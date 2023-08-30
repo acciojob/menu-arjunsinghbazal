@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import DishList from './DishList';
-import CategoryFilter from './CategoryFilter';
+
 
 const dishesData = [
     {
@@ -76,7 +75,51 @@ const dishesData = [
       desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
     },
   ]
+function CategoryFilter({ categories, activeCategory, setCategory }) {
+  return (
+    <div className="category-filter">
+      {categories.map((category, index) => (
+        <button
+          key={category}
+          onClick={() => setCategory(category)}
+          className={activeCategory === category ? 'active' : ''}
+          id={'filter-btn-'+[index]}
+          data-test-id={'menu-item-'+[category]}
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+  );
+}
+function Dish({ dish }) {
+  const { title, category, price, img, desc } = dish;
 
+  return (
+    <div className="dish">
+      <img src={img} alt={title} />
+      <div className="dish-details">
+        <div className='title'>
+          <h2>{title}</h2>
+          <p className='price'>$ &nbsp;{price}</p>
+        </div>
+        <p>{desc}</p>
+      </div>
+    </div>
+  );
+}
+function DishList({ dishes, category }){
+    const filteredDishes = 
+        category === 'All' ? dishes : dishes.filter((dish) => dish.category === category);
+
+    return(
+        <div className='dish-list'>
+            {filteredDishes.map((dish) => (
+                <Dish key={dish.id} dish={dish}/>
+            ))}
+        </div>
+    );
+}
 const App = () => {
     const [category, setCategory] = useState('All');
     const categories = ['All', 'breakfast', 'lunch', 'shakes'];
