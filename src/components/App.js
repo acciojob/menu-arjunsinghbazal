@@ -1,141 +1,149 @@
-import React, {useState} from 'react';
+import React,{useState} from "react";
 
 
-const dishesData = [
+const data=[
     {
-      id: 1,
-      title: 'Buttermilk Pancakes',
-      category: 'breakfast',
-      price: 15.99,
-      img: 'https://tornadoughalli.com/wp-content/uploads/2021/12/BUTTERMILK-PANCAKE-RECIPE-3-1.jpg',
-      desc: `I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed `,
+        id: 1,
+        title: 'buttermilk pancakes',
+        category: 'breakfast',
+        price: 15.99,
+        img: './images/item-1.jpeg',
+        desc: `I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed `,
     },
     {
-      id: 2,
-      title: 'Diner Double',
-      category: 'lunch',
-      price: 13.99,
-      img: 'https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/12/Easy-Dinner-Ideas-1-1.jpg',
-      desc: `vaporware iPhone mumblecore selvage raw denim slow-carb leggings gochujang helvetica man braid jianbing. Marfa thundercats `,
+        id: 2,
+        title: 'diner double',
+        category: 'lunch',
+        price: 13.99,
+        img: './images/item-2.jpeg',
+        desc: `vaporware iPhone mumblecore selvage raw denim slow-carb leggings gochujang helvetica man braid jianbing. Marfa thundercats `,
     },
     {
-      id: 3,
-      title: 'Godzilla Milkshake',
-      category: 'shakes',
-      price: 6.99,
-      img: 'https://www.howtocookthat.net/public_html/wp-content/uploads/2016/06/freakshakes-2-550x309.jpg',
-      desc: `ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`,
+        id: 3,
+        title: 'godzilla milkshake',
+        category: 'shakes',
+        price: 6.99,
+        img: './images/item-3.jpeg',
+        desc: `ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`,
     },
     {
-      id: 4,
-      title: 'Country Delight',
-      category: 'breakfast',
-      price: 20.99,
-      img: 'https://img.delicious.com.au/bQjDG77i/del/2021/07/spiced-peanut-butter-and-honey-pancakes-with-blackberry-cream-155151-2.jpg',
-      desc: `Shabby chic keffiyeh neutra snackwave pork belly shoreditch. Prism austin mlkshk truffaut, `,
+        id: 4,
+        title: 'country delight',
+        category: 'breakfast',
+        price: 20.99,
+        img: './images/item-4.jpeg',
+        desc: `Shabby chic keffiyeh neutra snackwave pork belly shoreditch. Prism austin mlkshk truffaut, `,
     },
     {
-      id: 5,
-      title: 'Egg Attack',
-      category: 'lunch',
-      price: 22.99,
-      img: 'https://hips.hearstapps.com/hmg-prod/images/copycat-chipotle-burrito-bowl-index-641dd68b3263d.jpg?crop=0.647xw:0.647xh;0.171xw,0.160xh&resize=1200:*',
-      desc: `franzen vegan pabst bicycle rights kickstarter pinterest meditation farm-to-table 90's pop-up `,
+        id: 5,
+        title: 'egg attack',
+        category: 'lunch',
+        price: 22.99,
+        img: './images/item-5.jpeg',
+        desc: `franzen vegan pabst bicycle rights kickstarter pinterest meditation farm-to-table 90's pop-up `,
     },
     {
-      id: 6,
-      title: 'Oreo Dream',
-      category: 'shakes',
-      price: 18.99,
-      img: 'https://www.archanaskitchen.com/images/archanaskitchen/1-Author/Waagmi_Soni/oreo-milkshake-recipe.jpg',
-      desc: `Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday`,
+        id: 6,
+        title: 'oreo dream',
+        category: 'shakes',
+        price: 18.99,
+        img: './images/item-6.jpeg',
+        desc: `Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday`,
     },
     {
-      id: 7,
-      title: 'Bacon Overflow',
-      category: 'breakfast',
-      price: 8.99,
-      img: 'https://cdn-aboak.nitrocdn.com/QJsLnWfsWAiuukSIMowyVEHtotvSQZoR/assets/images/optimized/rev-f6d083e/sites/default/files/styles/taxonomy_1200/public/open-kitchen/categories/breakfast-peanut-butter-jelly-yogurt-bowl.jpg',
-      desc: `carry jianbing normcore freegan. Viral single-origin coffee live-edge, pork belly cloud bread iceland put a bird `,
+        id: 7,
+        title: 'bacon overflow',
+        category: 'breakfast',
+        price: 8.99,
+        img: './images/item-7.jpeg',
+        desc: `carry jianbing normcore freegan. Viral single-origin coffee live-edge, pork belly cloud bread iceland put a bird `,
     },
     {
-      id: 8,
-      title: 'American Classic',
-      category: 'lunch',
-      price: 12.99,
-      img: 'https://www.2foodtrippers.com/wp-content/uploads/2021/03/American-Food-Icons-Social-IMG.jpg',
-      desc: `on it tumblr kickstarter thundercats migas everyday carry squid palo santo leggings. Food truck truffaut  `,
+        id: 8,
+        title: 'american classic',
+        category: 'lunch',
+        price: 12.99,
+        img: './images/item-8.jpeg',
+        desc: `on it tumblr kickstarter thundercats migas everyday carry squid palo santo leggings. Food truck truffaut  `,
     },
     {
-      id: 9,
-      title: 'Quarantine Buddy',
-      category: 'shakes',
-      price: 16.99,
-      img: 'https://media-cldnry.s-nbcnews.com/image/upload/newscms/2015_32/716996/fruit-smoothies-today-tease-1-150805.jpg',
-      desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+        id: 9,
+        title: 'quarantine buddy',
+        category: 'shakes',
+        price: 16.99,
+        img: './images/item-9.jpeg',
+        desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
     },
-  ]
-function CategoryFilter({ categories, activeCategory, setCategory }) {
-  return (
-    <div className="category-filter">
-      {categories.map((category, index) => (
-        <button
-          key={category}
-          onClick={() => setCategory(category)}
-          className={activeCategory === category ? 'active' : ''}
-          id={'filter-btn-'+[index]}
-          data-test-id={'menu-item-'+[category]}
-        >
-          {category}
-        </button>
-      ))}
-    </div>
-  );
-}
-function Dish({ dish }) {
-  const { title, category, price, img, desc } = dish;
+];
 
-  return (
-    <div className="dish">
-      <img src={img} alt={title} />
-      <div className="dish-details">
-        <div className='title'>
-          <h2>{title}</h2>
-          <p className='price'>$ &nbsp;{price}</p>
+
+
+
+const App=()=>{
+  const [menu,setMenu]=useState([]);
+
+
+
+  const handleClick =(e)=>{
+     if(e.target.innerText === 'All')
+     {
+        setMenu(data);
+     }
+     else if(e.target.innerText === 'Breakfast')
+     {
+        setMenu(data.filter((item) => (item.category === 'breakfast')))
+     }
+     else if(e.target.innerText === 'Lunch')
+     {
+        setMenu(data.filter((item) => (item.category === 'Lunch')))
+     }
+     else if(e.target.innerText === 'Shakes')
+     {
+        setMenu(data.filter((item) => (item.category === 'Shakes')))
+     }
+  }
+
+
+    return (
+        <div id="main">
+            <h1>Our Menu</h1>
+            <p onClick={handleClick}>All</p>
+            <p id="filter-btn-1" onClick={handleClick}>Breakfast</p>
+            <p id="filter-btn-2" onClick={handleClick}>Lunch</p>
+            <p id="filter-btn-3" onClick={handleClick}>Shakes</p>
+
+
+
+            {
+                menu.map(item =>(
+                    item.category=="shakes"?
+                    <div data-test-id="menu-item-shakes">
+                        <img src={item.img} alt={item.title}></img>
+                        <h2><span>{item.title}</span><span>{item.price}</span></h2>
+                        <p>{item.desc}</p>
+                    </div>:
+                    item.category == 'lunch' ?
+                    <div data-test-id="menu-item-lunch">
+                        <img src={item.img} alt={item.title}></img>
+                        <h2><span>{item.title}</span> <span>{item.price}</span></h2>
+                        <p>{item.desc}</p>
+                    </div> :
+                    item.category == 'breakfast' ?
+                        <div data-test-id="menu-item-breakfast">
+                            <img src={item.img} alt={item.title}></img>
+                            <h2><span>{item.title}</span> <span>{item.price}</span></h2>
+                            <p>{item.desc}</p>
+                        </div> :
+                        <div>
+                            <img src={item.img} alt={item.title}></img>
+                            <h2><span>{item.title}</span> <span>{item.price}</span></h2>
+                            <p>{item.desc}</p>
+                        </div>
+                ))
+            }
         </div>
-        <p>{desc}</p>
-      </div>
-    </div>
-  );
-}
-function DishList({ dishes, category }){
-    const filteredDishes = 
-        category === 'All' ? dishes : dishes.filter((dish) => dish.category === category);
 
-    return(
-        <div className='dish-list'>
-            {filteredDishes.map((dish) => (
-                <Dish key={dish.id} dish={dish}/>
-            ))}
-        </div>
-    );
-}
-const App = () => {
-    const [category, setCategory] = useState('All');
-    const categories = ['All', 'breakfast', 'lunch', 'shakes'];
-
-    return(
-        <div id='main'>
-            <h1 style={{textAlign: "center"}}>Our Menu</h1>
-            <CategoryFilter 
-                categories={categories}
-                activeCategory={category}
-                setCategory={setCategory}
-            />
-            <DishList dishes={dishesData} category={category} />
-        </div>
     )
 }
 
 export default App;
-
